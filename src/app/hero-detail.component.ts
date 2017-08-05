@@ -15,6 +15,9 @@ import 'rxjs/add/operator/switchMap';
 })
 
 export class HeroDetailComponent implements OnInit {
+
+  hero: Hero;
+
   constructor(
     private heroService: HeroService,
     private route: ActivatedRoute,
@@ -31,5 +34,8 @@ export class HeroDetailComponent implements OnInit {
     this.location.back();
   }
 
-  hero: Hero;
+  save(): void {
+    this.heroService.update(this.hero)
+      .then(() => this.goBack());
+  }
 }
